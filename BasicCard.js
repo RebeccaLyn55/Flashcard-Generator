@@ -2,21 +2,16 @@
 var fs = require('fs');
 
 //Constructor for creating Basic FlashCards with front/back parameters
-var Basic = function(front,back){
-	this.front=front;
-	this.back=back;
+function BasicCard(front, back) {
+    this.front = front;
+    this.back = back;
+    this.createCard = function() {
+    	var newBasicCard = new BasicCard(front, back);
+    	var logBasicCard = 'Front: ' + newBasicCard.front + ', ' + 'Back: ' + newBasicCard.back;
+		fs.appendFile("log.txt", logBasicCard);
+       	console.log('Your Flashcard: ' + this.front  + ", " + this.back);
+    };
 }
-
-
-
-
-
-//Must save object user inputs - txt file (use fs.append, as fs.write will write over data each time)
-fs.appendFile('log.txt', JSON.stringify(newResult), function(err)  {
-  if (err) throw err;
-  console.log('The file has been saved!');
-});
-
 
 //Exporting module for app.js file
 module.exports = BasicCard;
